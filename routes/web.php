@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Pertemuan3Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Pertemuan3Controller::class, 'index']);
+Route::post('/', [Pertemuan3Controller::class, 'store']);
+Route::get('/add0089', [Pertemuan3Controller::class, 'create']);
+Route::get('/edit0089/{id}', [Pertemuan3Controller::class, 'edit']);
+Route::post('/edit0089/{id}', [Pertemuan3Controller::class, 'update']);
+Route::get('/delete/{id}', [Pertemuan3Controller::class, 'destroy']);

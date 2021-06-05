@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Pertemuan3Controller extends Controller
 {
@@ -13,7 +14,8 @@ class Pertemuan3Controller extends Controller
      */
     public function index()
     {
-        //
+        $guru = DB::table('guru')->get();
+        return view('home0089', ['gurus' => $guru]);
     }
 
     /**
@@ -23,7 +25,7 @@ class Pertemuan3Controller extends Controller
      */
     public function create()
     {
-        //
+        return view('add0089');
     }
 
     /**
@@ -34,7 +36,12 @@ class Pertemuan3Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('guru')->insert([
+            'nama' => $request->nama,
+            'mengajar' => $request->bidang
+        ]);
+
+        return redirect('/');
     }
 
     /**
@@ -45,7 +52,6 @@ class Pertemuan3Controller extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -56,7 +62,8 @@ class Pertemuan3Controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $guru = DB::table('guru')->find($id);
+        return view('edit0089', ['guru' => $guru]);
     }
 
     /**
@@ -68,7 +75,15 @@ class Pertemuan3Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $guru = DB::table('guru')->find($id);
+        // $guru->update($request->all());
+        DB::table('guru')
+            ->where('id', $id)
+            ->update([
+                'nama' => $request->nama,
+                'mengajar' => $request->bidang
+            ]);
+        return redirect('/');
     }
 
     /**
@@ -79,6 +94,7 @@ class Pertemuan3Controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('guru')->where('id', '=', $id)->delete();
+        return back();
     }
 }
