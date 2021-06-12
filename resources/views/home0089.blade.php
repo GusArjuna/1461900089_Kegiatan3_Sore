@@ -3,6 +3,18 @@
 @section('isi')
 <h5>Select Filter</h5>
 <a href="{{url('add0089')}}" class="btn btn-primary mb-3">Add Data</a>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+    <label class="form-check-label" for="flexRadioDefault1">
+        A-Z
+    </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+    <label class="form-check-label" for="flexRadioDefault2">
+        Z-A
+    </label>
+</div>
 <table class="table">
     <thead class="table-dark">
         <tr>
